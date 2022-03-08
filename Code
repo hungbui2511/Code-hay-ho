@@ -1,0 +1,11 @@
+#extract information on dataset like null values, data types and unique values in columns
+def details(df):
+    sum_null_values = df.isnull().sum()
+    percent_null_values = 100* (sum_null_values/len(df))
+    data_type = df.dtypes
+    unique_values = df.nunique()
+    table = pd.concat([sum_null_values,percent_null_values,data_type,unique_values], axis=1)
+    table_col = table.rename(columns = {0 : 'Missing Values', 1 : '% of Total Missing Values', 2 : 'Data_Type', 3: 'Unique values'})
+    return table_col
+#Hiển thị cột dòng
+pd.options.display.max_columns = None
